@@ -116,14 +116,14 @@ echo "<br><br>";
 //}
 
 $str = "let str = 'Hi I am ALex'";
-//    $i = 0;$strRes="";$count=0;
-//    while ($str[$count]) $count++;
-//    while ($i <= $count) {
-//        $oneChar = ord($str[$count - $i]);
-//        if ($oneChar>=65&&$oneChar<=90) $oneChar+=32;
-//        $strRes.= chr($oneChar);
-//        $i++;
-//    }
+    $i = 0;$strRes="";$count=0;
+    while ($str[$count]) $count++;
+    while ($i <= $count) {
+        $oneChar = ord($str[$count - $i]);
+        if ($oneChar>=65&&$oneChar<=90) $oneChar+=32;
+        $strRes.= chr($oneChar);
+        $i++;
+    }
 
     $i=0;$strRes="";$count=0;
     do {$count++;} while ($str[$count]);
