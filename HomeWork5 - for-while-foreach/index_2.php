@@ -7,16 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<body>
 <pre>
 <?php
 echo "<------------Task 1 --------------><br>";
 echo "1) Написать программу, которая выводит простые числа, т.е. делящиеся без oстатка только на себя и на 1.";
-$maxNumber = 20;
+
 $arrRes = [1, 2];
+$maxNumber = 12;
+$i = 3;
+
 for ($i = 3; $i <= $maxNumber; $i++) {
-    $lenghtArrRes = count($arrRes);
+    for ($count = 0; $arrRes[$count]; $count++) {/*count array*/
+    };
     $addToArr = true;
-    for ($k = 1; $k < $lenghtArrRes; $k++) {
+    for ($k = 1; $k < $count; $k++) {
         if ($i % $arrRes[$k] == 0) {
             $addToArr = false;
             break;
@@ -24,26 +29,140 @@ for ($i = 3; $i <= $maxNumber; $i++) {
     }
     if ($addToArr) $arrRes[] = $i;
 }
-echo "<pre> Max number $maxNumber, result:";
+$arrRes = [1, 2];
+$i = 3;
+while ($i < $maxNumber) {
+    $count = 0;
+    while ($arrRes[$count]) {
+        $count++;
+    };
+    $addToArr = true;
+    $k = 2;
+    while ($k < $count) {
+        if ($i % $arrRes[$k] == 0) {
+            $addToArr = false;
+            break;
+        };
+        $k++;
+    }
+    if ($addToArr) {
+        $arrRes[] = $i;
+    }
+
+    $i++;
+}
+$arrRes = [1, 2];
+$i = 3;
+do {
+    $count = 0;
+    do {
+        $count++;
+    } while ($arrRes[$count]);
+    $addToArr = true;
+    $k = 1;
+    do {
+        if ($i % $arrRes[$k] == 0) {
+            $addToArr = false;
+            break;
+        };
+        $k++;
+    } while ($k < $count);
+    if ($addToArr) {
+        $arrRes[] = $i;
+    }
+    $i++;
+} while ($i < $maxNumber);
+$arrRes = [1, 2];
+for ($i = 3; $i <= $maxNumber; $i++) {
+    $count = 0;
+    foreach ($arrRes as $item) {
+        if ($item) {
+            $count++;
+        }
+    }
+    $addToArr = true;
+    for ($k = 1; $k < $count; $k++) {
+        if ($i % $arrRes[$k] == 0) {
+            $addToArr = false;
+            break;
+        };
+    }
+    if ($addToArr) $arrRes[] = $i;
+}
+
+echo "<br> Max number $maxNumber, result:";
 print_r($arrRes);
 ?>
-
     <?php
     echo "<br><------------Task 2 --------------><br>";
     echo "2) Сгенерируйте 100 раз новое число и выведите на экран количество четных чисел из этих 100.";
     $res = 0;
-    for ($i = 1; $i <= 100; $i++) if (rand(1, 100) % 2) $res++;
+    for ($i = 1; $i <= 100; $i++) {
+        if (rand(1, 100) % 2) {
+            $res++;
+        }
+    };
+    $res = 0;
+    $i = 0;
+    while ($i <= 100) {
+        if (rand(1, 100) % 2) {
+            $res++;
+        }
+        $i++;
+    }
+    $res = 0;
+    $i = 0;
+    do {
+        if (rand(1, 100) % 2) {
+            $res++;
+        }
+        $i++;
+    } while ($i <= 100);
+    //    <-------------------->
+    $newArr = [];
+    $res = 0;
+    for ($i = 0; $i <= 100; $i++) {
+        $newArr[] = rand(1, 2);
+    }
+    foreach ($newArr as $item) {
+        $res += ($item == 1) ? 1 : 0;
+    }
     echo "<br>Из 100 случайных чисел четных - $res<br>";
     ?>
     <?php
     echo "<br><------------Task 3 --------------><br>";
-    echo "3) Сгенерируйте 100 раз число от 1 до 5 и выведите на экран сколько раз сгенерировались эти числа (1, 2, 3, 4 и 5).<br>";
+    echo "3) Сгенерируйте 100 раз число от 1 до 5 и выведите на экран сколько раз сгенерировались эти 
+числа (1, 2, 3, 4 и 5).<br>";
     $arrRes = [];
-
     for ($i = 1; $i <= 100; $i++) {
         $number = rand(1, 5);
         $arrRes[$number]++;
     };
+    $i = 0;
+    $arrRes = [];
+    while ($i <= 100) {
+        $number = rand(1, 5);
+        $arrRes[$number]++;
+        $i++;
+    }
+    $i = 0;
+    $arrRes = [];
+    do {
+        $number = rand(1, 5);
+        $arrRes[$number]++;
+        $i++;
+    } while ($i <= 100);
+    //    <-------------------->
+    $newArr = [];
+    $arrRes = [];
+    $res = 0;
+    for ($i = 1; $i <= 100; $i++) {
+        $newArr[] = rand(1, 5);
+    }
+    foreach ($newArr as $item) {
+        $arrRes[$item]++;
+    }
+
     echo "Числа от 1 до 5 генерировались следующим образом:";
     print_r($arrRes);
     ?>
@@ -54,7 +173,7 @@ print_r($arrRes);
     table, td {
         border: 2px solid black;
     }
-    </style>
+</style>
 <table>
     <?php for ($row = 1; $row <= 3; $row++): ?>
         <tr>
@@ -65,28 +184,91 @@ print_r($arrRes);
         </tr>
     <?php endfor; ?>
 </table>
-
+<table>
+    <?php
+    $row = 1;
+    while ($row <= 3): ?>
+        <tr>
+            <?php
+            $col = 1;
+            while ($col <= 5): ?>
+                <?php $randColor = "rgb(" . rand(0, 255) . "," . rand(0, 255) . "," . rand(0, 255) . ")"; ?>
+                <td style="background-color:<?= $randColor ?>"><?= "$col" . "$row" ?></td>
+                <?php
+                $col++;
+            endwhile;
+            ?>
+        </tr>
+        <?php
+        $row++;
+    endwhile; ?>
+</table>
+<table>
+    <?php
+    $row = 1;
+    do { ?>
+        <tr>
+            <?php
+            $col = 1;
+            do { ?>
+                <?php $randColor = "rgb(" . rand(0, 255) . "," . rand(0, 255) . "," . rand(0, 255) . ")"; ?>
+                <td style="background-color:<?= $randColor ?>"><?= "$col" . "$row" ?></td>
+                <?php
+                $col++;
+            } while ($col <= 5);
+            ?>
+        </tr>
+        <?php
+        $row++;
+    } while ($row <= 3); ?>
+</table>
+<table>
+    <?php
+    $arrRow = [1, 2, 3];
+    $arrCol = [1, 2, 3, 4, 5];
+    foreach ($arrRow as $row) { ?>
+        <tr>
+            <?php
+            $col = 1;
+            foreach ($arrCol as $col) { ?>
+                <?php $randColor = "rgb(" . rand(0, 255) . "," . rand(0, 255) . "," . rand(0, 255) . ")"; ?>
+                <td style="background-color:<?= $randColor ?>"><?= "$col" . "$row" ?></td>
+                <?php
+                $col++;
+            };
+            ?>
+        </tr>
+        <?php
+    } ?>
+</table>
 <?php echo "<br><------------Task 1.1 --------------><br>";
 echo "В переменной month лежит какое-то число из интервала от 1 до 12. Определите в какую пору года попадает этот месяц (зима, лето, весна, осень).<br>";
 $month = rand(1, 12);
-if ($month == 12 || $month == 1 || $month == 2) echo "Выбран месяц $month, это зима";
-elseif ($month == 3 || $month == 4 || $month == 5) echo "Выбран месяц $month, это весна";
-elseif ($month >= 6 && $month <= 8) echo "Выбран месяц $month, это лето";
-else echo "Выбран месяц $month, это осень";
+if ($month == 12 || $month == 1 || $month == 2) {
+    echo "Выбран месяц $month, это зима";
+} elseif ($month == 3 || $month == 4 || $month == 5) {
+    echo "Выбран месяц $month, это весна";
+} elseif ($month >= 6 && $month <= 8) {
+    echo "Выбран месяц $month, это лето";
+} else echo "Выбран месяц $month, это осень";
 ?>
 
     <?php echo "<br><------------Task 1.2 --------------><br>";
     echo "Дана строка, состоящая из символов, например, 'abcde'. Проверьте, что первым символом этой строки является 
 буква 'a'. Если это так - выведите 'да', в противном случае выведите 'нет'.<br>";
     $str = "abcde";
-    if ($str[0] == "a") echo "<br>Первая буква строки $str - действительо 'а'";
+    if ($str[0] == "a") {
+        echo "<br>Первая буква строки $str - действительо 'а'";
+    }
     ?>
 
     <?php echo "<br><------------Task 1.3 --------------><br>";
     echo "Дана строка с цифрами, например, '12345'. Проверьте, что первым символом этой строки является цифра 1, 2 или 3.
 Если это так - выведите 'да', в противном случае выведите 'нет'.<br>";
     $str = "12345";
-    if ($str[0] == "1" || $str[0] == "2" || $str[0] == "3") echo "<br>Первая буква строки $str - действительо или 1 или 2 или 3";
+    if ($str[0] == "1" || $str[0] == "2" || $str[0] == "3") {
+        echo "<br>Первая буква строки $str - действительо или 1 или 2 или 3";
+    }
     ?>
 
 
@@ -110,7 +292,7 @@ else echo "Выбран месяц $month, это осень";
     <?php echo "<br><------------Task 1.6 --------------><br>";
     echo "В переменной cloсk лежит число от 0 до 59 – это минуты. Определите в какую четверть часа попадает это число 
 (в первую, вторую, третью или четвертую). тернарка и if else. <br><br>";
-        $clock = rand(0, 59);
+    $clock = rand(0, 59);
     echo "Показание минуты $clock попадает в ";
     echo $clock <= 15 ? "первая четверть" :
         ($clock <= 30 ? "вторая четверть" :
@@ -121,14 +303,17 @@ else echo "Выбран месяц $month, это осень";
     echo "<br>";
     $clock = rand(0, 59);
     echo "Показание минуты $clock попадает в ";
-    if ($clock <= 15) echo "первая четверть";
-        elseif ($clock <= 30) echo "вторая четверть";
-            elseif ($clock <= 45) echo "третья четверть";
-                else echo "четвертая четверть";
+    if ($clock <= 15) {
+        echo "первая четверть";
+    } elseif ($clock <= 30) {
+        echo "вторая четверть";
+    } elseif ($clock <= 45) {
+        echo "третья четверть";
+    } else {
+        echo "четвертая четверть";
+    }
+
     ?>
-
-
-
 </pre>
 </body>
 </html>
